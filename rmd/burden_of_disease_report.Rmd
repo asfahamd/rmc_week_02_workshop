@@ -5,7 +5,7 @@ output: github_document
 ---
 
 ```{r include = F}
-knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(echo = FALSE, message = FALSE)
 ```
 
 # Introduction
@@ -18,7 +18,4 @@ The source data is from the Institute for Health Metrics and Evaluation (IHME) G
 ```
 
 ```{r child='ncd_burden.Rmd'}
-```
-
-```{r child='overall_burden.Rmd'}
 ```
