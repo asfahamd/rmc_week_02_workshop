@@ -18,11 +18,20 @@ ncd_burden <- read_csv(here::here("data/burden-of-disease-ncd.csv"))
 ncd_burden_clean <- burden_of_disease_cmnn %>% 
   rename(Country = 'Entity', DALYs = 'DALYs (Disability-Adjusted Life Years) - Communicable, maternal, neonatal, and nutritional diseases - Sex: Both - Age: Age-standardized (Rate)') %>% 
   filter(Country %in% c("Eritrea","Malawi","Japan"))
+
 # You should pivot the data to show each country in a separate column.
 
 ncd_burden_pivot <- ncd_burden_clean %>% 
 pivot_wider(names_from = Country,
             values_from = DALYs)
+
+
+# You should pivot the data to show each country in a separate column.
+ncd_burden_pivot <- ncd_burden_clean %>% 
+pivot_wider(names_from = Country,
+            values_from = DALYs)
+
+
 # Use kable() from the knitr package to render the table.
 knitr::kable(ncd_burden_pivot)
 ```
@@ -31,6 +40,9 @@ knitr::kable(ncd_burden_pivot)
 
 ```{r}
 # Here, plot a line graph showing the trend of DALY burden for the chosen countries over time. You can use ggplot2 to create this plot. Each country's line should be a different color.
+
+
+
 
 ncd_burden_plot <- ggplot(data = ncd_burden_clean,
                            mapping = aes(x = Year,
@@ -44,5 +56,6 @@ print(ncd_burden_plot)
 ## Summary of NCD Burden Findings
 
 Provide a brief analysis based on the data presented in the table and chart. Highlight any significant findings or patterns. About 3 sentences.
+Malawi's variation in non-communicable diseases seems to spike upwards 1995 to 1998, then drop drastically downwards afterwards. Comparatively, Eritrea has a steady decline of DALYs from 1990 to 2020, while Japan's seems to remain stable year-to-year.
 
 Malawi's variation in non-communicable diseases seems to spike upwards 1995 to 1998, then drop drastically downwards afterwards. Comparatively, Eritrea has a steady decline of DALYs from 1990 to 2020, while Japan's seems to remain stable year-to-year.
