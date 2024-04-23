@@ -19,9 +19,16 @@ Then they will add the other group members as collaborators on the forked repo.
 
 All group members should then clone the repo to their local machines.
 
+
 # TASK 2: CHOOSE THREE COUNTRIES 
 
 As a group, decide on three countries you want to analyze and compare in your report. Make sure each group member knows which countries were selected.
+
+```{r}
+# Three countries chosen are Eritrea, Malawi and Japan
+
+```
+
 
 # TASK 3: COMPLETE THE CHILD DOCUMENTS
 

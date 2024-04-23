@@ -12,18 +12,39 @@ data_cmnn <- read_csv(here("data", "burden-of-disease-cmnn.csv"))
 
 ```{r}
 # Here render a table for the DALY burden over time for the three countries 
+burden_of_disease_cmnn <- read_csv(here::here("data/burden-of-disease-cmnn.csv")) 
+
+burden_of_disease_cmnn_clean <- burden_of_disease_cmnn %>% 
+  rename(Country = 'Entity', DALYs = 'DALYs (Disability-Adjusted Life Years) - Communicable, maternal, neonatal, and nutritional diseases - Sex: Both - Age: Age-standardized (Rate)') %>% 
+  filter(Country %in% c("Eritrea","Malawi","Japan"))
+
 # You should pivot the data to show each country in a separate column.
+burden_of_disease_cmnn_pivot <- burden_of_disease_cmnn_clean %>% 
+pivot_wider(names_from = Country,
+            values_from = DALYs)
 # Use kable() from the knitr package to render the table.
+
+knitr::kable(burden_of_disease_cmnn_pivot)
 ```
 
 ## Plot Showing Trends in CMNN Burden Over Time
 
 ```{r}
 # Here, plot a line graph showing the trend of DALY burden for the chosen countries over time. You can use ggplot2 to create this plot. Each country's line should be a different color.
+
+burden_of_disease_cmnnplot <- ggplot(data = burden_of_disease_cmnn_clean,
+       mapping = aes(x = Year,
+                     y = DALYs,
+                     color = Country)) +
+      geom_line()
+
+print(burden_of_disease_cmnnplot)
 ```
 
 ## Summary of CMNN Burden Findings
 
 Provide a brief analysis based on the data presented in the table and chart. Highlight any significant findings or patterns. About 3 sentences.
 
+At first glance, the DALYs for the three countries (Eritrea, Malawi and Japan) appear markedly different. Malawi seems to have the most DALYs in terms of count across from 1990 to 2020, when compared to Eritrea and Japan. Japan seems to have much lower DALYs with little variation from 1990 to 2020.
+```
 
